@@ -2,10 +2,11 @@ package main
 
 import (
 	"log"
-	"server/db"
-	"server/internal/user"
-	"server/internal/ws"
-	"server/router"
+
+	"github.com/aslam-ep/go-chat/db"
+	"github.com/aslam-ep/go-chat/internal/user"
+	"github.com/aslam-ep/go-chat/internal/ws"
+	"github.com/aslam-ep/go-chat/router"
 )
 
 func main() {

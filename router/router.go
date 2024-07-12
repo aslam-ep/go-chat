@@ -1,8 +1,8 @@
 package router
 
 import (
-	"server/internal/user"
-	"server/internal/ws"
+	"github.com/aslam-ep/go-chat/internal/user"
+	"github.com/aslam-ep/go-chat/internal/ws"
 
 	"github.com/gin-gonic/gin"
 )

@@ -2,9 +2,10 @@ package user
 
 import (
 	"context"
-	"server/util"
 	"strconv"
 	"time"
+
+	"github.com/aslam-ep/go-chat/util"
 
 	"github.com/golang-jwt/jwt/v4"
 )
