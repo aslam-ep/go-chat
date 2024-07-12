@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres15
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: go-chat
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  migrate:
+    image: migrate/migrate
+    command: [
+      "-path", "/migrations", 
+      "-database", "postgresql://root:password@postgres15:5432/go-chat?sslmode=disable", 
+      "up"
+    ]
+    volumes:
+      - ./db/migrations:/migrations
+    depends_on:
+      - postgres
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - migrate
+    environment:
+      - DB_HOST=postgres15
+      - DB_PORT=5432
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_NAME=go-chat
+
+volumes:
+  postgres_data:
